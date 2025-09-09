@@ -58,7 +58,7 @@ def plot_attention_overlay(blended_image):
 
 if __name__ == "__main__":
     model, feature_extractor, device = load_model_and_extractor()
-    image_url = "man_bar.jpg"
+    image_url = "inputs/man_bar.jpg"
     image = load_image(image_url)
     attn_map = get_attention_map(model, feature_extractor, device, image)
     attn_normalized = smooth_and_resize_attention(attn_map, image.size)
