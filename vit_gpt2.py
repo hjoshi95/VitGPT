@@ -30,8 +30,8 @@ def generate_caption(image_path):
         pixel_values, 
         max_length=16, 
         num_beams=4,
-        pad_token_id=tokenizer.pad_token_id,
-        eos_token_id=tokenizer.eos_token_id,
+        # pad_token_id=tokenizer.pad_token_id,
+        # eos_token_id=tokenizer.eos_token_id,
         do_sample=False,
         early_stopping=True
     )
@@ -40,6 +40,6 @@ def generate_caption(image_path):
     return caption
 
 if __name__ == "__main__":
-    image_path = "inputs/cat_park.jpg"
+    image_path = "inputs/man_bar.jpg"
     caption = generate_caption(image_path)
     print("Generated Caption:", caption) 
