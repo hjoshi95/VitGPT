@@ -26,6 +26,6 @@ def generate_caption(image_path):
     return caption
 
 if __name__ == "__main__":
-    image_path = "/Users/hardikjoshi/Desktop/Hardik Joshi /Projects/VitGPT/cat_park.jpg"
+    image_path = "/Users/hardikjoshi/Desktop/Hardik Joshi /Projects/VitGPT/cat_park.jpg "
     caption = generate_caption(image_path)
-    print("Generated Caption:", caption)
+    print("Generated Caption:", caption) 
