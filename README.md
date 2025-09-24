@@ -26,17 +26,15 @@ I get the attention weights, normalize them and apply a scaled heatmap on top of
 
 
 ## Results 
-### Generated Caption: a gray and white cat laying in the grass 
-<img width="600" height="600" alt="Attention_maps" src="https://github.com/user-attachments/assets/74942069-fa54-4a69-9d1d-4a415ae938c2" />
+<img width="484" height="391" alt="cat_park_heatmap_captioned" src="https://github.com/user-attachments/assets/3c6972f8-6511-4277-89b6-95706de10ef4" />
 
-### Generated Caption: a man sitting at a bar looking at his cell phone 
-<img width="600" height="600" alt="Figure_1" src="https://github.com/user-attachments/assets/7dbba049-0820-4ab7-a4e7-a22d60a10df4" />
+<img width="484" height="350" alt="man_bar_heatmap_captioned" src="https://github.com/user-attachments/assets/1c46f794-0abe-41f0-b8e4-fdb5718f609b" />
+
 
 
 ## Running 
 1. Add an image to the input folder
-2. Change the path in the image_url variable to _input/path_to_your_img.jpeg_
-3. Run python vit_gpt2.py to generate a caption for the input image
-4. Run python vit_visualize.py to visualize the attention weights on the input image
+2. Run python vit_gpt2.py --image _path/to/your_image.jpg_ 
+3. Run python vit_visualize.py to visualize the attention weights on the input image with the caption above
 
 ## Next - I plan on Fine-Tuning the FlickR dataset using these transformer models 
