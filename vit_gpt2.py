@@ -1,8 +1,10 @@
 from transformers import VisionEncoderDecoderModel, ViTImageProcessor, AutoTokenizer
 from PIL import Image
-import requests
 import torch
 import warnings
+import json
+import os
+import argparse
 warnings.filterwarnings("ignore", message=".*attention_mask.*")
 
 model_name = "nlpconnect/vit-gpt2-image-captioning"
@@ -19,10 +21,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 
 def generate_caption(image_path):
-    if image_path.startswith("http") or image_path.startswith("https"):
-        image = Image.open(requests.get(image_path, stream=True).raw).convert("RGB")
-    else:
-        image = Image.open(image_path).convert("RGB")
+    image = Image.open(image_path).convert("RGB")
 
     pixel_values = feature_extractor(images=image, return_tensors="pt").pixel_values.to(device)
 
@@ -40,6 +39,17 @@ def generate_caption(image_path):
     return caption
 
 if __name__ == "__main__":
-    image_path = "inputs/man_bar.jpg"
+    parser = argparse.ArgumentParser(description="Generate caption for a local image and persist context for visualization")
+    parser.add_argument("--image", required=True, help="Path to a local image file (e.g., inputs/cat_park.jpg)")
+    args = parser.parse_args()
+
+    image_path = args.image
+    if not os.path.isfile(image_path):
+        raise FileNotFoundError(f"Image not found: {image_path}")
+
     caption = generate_caption(image_path)
-    print("Generated Caption:", caption) 
+    print("Generated Caption:", caption)
+    payload = {"image_path": image_path, "caption": caption}
+    with open("last_caption.json", "w") as f:
+        json.dump(payload, f)
+    print("Wrote last_caption.json with image path and caption.")
